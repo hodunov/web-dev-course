@@ -22,7 +22,14 @@ if __name__ == '__main__':
 
 
 def parse_cookie(query: str) -> dict:
-    return {}
+    """
+    Converts query to a field-value dict
+    """
+    query = query.split(';')
+    # remove empty str from the list
+    query = list(filter(None, query))
+    # if the str > 0, return a non-empty dictionary
+    return {e[0]: e[1] for e in [e.split("=", 1) for e in query]} if len(query) > 0 else {}
 
 
 if __name__ == '__main__':
