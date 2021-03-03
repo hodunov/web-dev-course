@@ -1,16 +1,11 @@
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qsl
 
 
 def parse(query: str) -> dict:
     """
     Converts url to a field-value dict
     """
-    # select only the query string
-    query = urlparse(query).query
-    # if the string ends with an & or ? - remove it
-    query = query[:-1] if (query.endswith('&') or query.endswith('?')) else query
-    # if the str > 0, return a non-empty dictionary
-    return {e[0]: e[1] for e in [e.split("=", 1) for e in query.split("&")]} if len(query) > 0 else {}
+    return dict(parse_qsl(urlparse(query).query))
 
 
 if __name__ == '__main__':
@@ -25,11 +20,7 @@ def parse_cookie(query: str) -> dict:
     """
     Converts query to a field-value dict
     """
-    query = query.split(';')
-    # remove empty str from the list
-    query = list(filter(None, query))
-    # if the str > 0, return a non-empty dictionary
-    return {e[0]: e[1] for e in [e.split("=", 1) for e in query]} if len(query) > 0 else {}
+    return dict((x.split('=', 1) for x in query.split(';')[:-1]))
 
 
 if __name__ == '__main__':
