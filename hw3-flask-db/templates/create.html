@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% block body %}
+<body>
+    <div class="container">
+        <h1>{{page_name}}</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="form-group">
+                        {% for item in fields %}
+                            <h1></h1>
+                            <label for={{item}}>{{item.upper()}}</label>
+                            <input type="text" class="form-control" name={{item}} id={{item}} style="width: 50%">
+                        {% endfor %}
+                    </div>
+                    <input class="btn btn-secondary btn-sm" type="submit" value="ADD">
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

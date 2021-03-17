@@ -1,0 +1,60 @@
+{% extends 'index.html' %} {% block body %}
+<h1>BOOKS</h1>
+<h1></h1>
+<div class="container-space">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Author</th>
+        <th scope="col">Title</th>
+        <th scope="col">Year</th>
+        <th scope="col">Pages</th>
+        <th scope="col">Genre</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in books %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <th>
+          {% with author=get_by_id('authors', item[1]) %}
+          <a href="/author/{{author[0]}}/">{{author[1]}}</a>
+          {% endwith %}
+        </th>
+        <td>{{item[2]}}</td>
+        <td><a href="/year/{{item[3]}}/">{{item[3]}}</a></td>
+        <th>{{item[4]}}</th>
+        <th>
+          {% with genre=get_by_id('genres', item[5]) %}
+          <a href="/genre/{{genre[0]}}/">{{genre[1]}}</a>
+          {% endwith %}
+        </th>
+
+        <th>
+          <form method="get" action="/update/book/{{item[0]}}">
+            <input
+              type="submit"
+              value="UPDATE"
+              class="btn btn-secondary btn-sm"
+            />
+          </form>
+        </th>
+        <th>
+          <form method="get" action="delete/book/{{item[0]}}">
+            <input
+              type="submit"
+              value="DELETE"
+              class="btn btn-secondary btn-sm"
+            />
+          </form>
+        </th>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

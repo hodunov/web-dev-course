@@ -1,0 +1,64 @@
+{% extends 'index.html' %} {% block body %}
+<div class="container">
+  <h2>Update: {{book[2]}}</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <form method="post">
+        <div class="form-group">
+          <label for="title">TITLE</label>
+
+          <input
+            type="title"
+            class="form-control"
+            name="title"
+            id="title"
+            value="{{book[2]}}"
+          />
+
+          <label for="author">AUTHOR</label>
+          {% with author=get_by_id('authors', book[1]) %}
+          <input
+            type="text"
+            class="form-control"
+            name="author"
+            id="author"
+            value="{{author[1]}}"
+          />
+          {% endwith %}
+
+          <label for="year">YEAR</label>
+          <input
+            type="text"
+            class="form-control"
+            name="year"
+            id="year"
+            value="{{book[3]}}"
+          />
+
+          <label for="pages">PAGES</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pages"
+            id="pages"
+            value="{{book[4]}}"
+          />
+
+          <label for="genre">GENRE</label>
+          {% with genre=get_by_id('genres', book[5]) %}
+          <input
+            type="text"
+            class="form-control"
+            name="genre"
+            id="genre"
+            value="{{genre[1]}}"
+          />
+          {% endwith %}
+        </div>
+        <br />
+        <input class="btn btn-primary" type="submit" value="UPDATE" />
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
