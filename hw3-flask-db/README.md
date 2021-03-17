@@ -1,19 +1,24 @@
-Результат: один Пул Реквест!
+Реализовать библиотеку книг
 
 
 
-(2) 1. Возвращать содержимое файла с пайтон пакетами (requirements.txt) PATH: /requirements/ открыть файл requirements.txt и вернуть его содержимое
+Таблицы:
+
+Author
+Book
+Genre
+
+
+Функционал
 
 
 
-(2) 2. Вывести 100 случайно сгенерированных юзеров (почта + имя) 'Dmytro aasdasda@mail.com' PATH: /generate-users/ ( https://pypi.org/project/Faker/ ) + параметр который регулирует количество юзеров
 
 
-
-(2) 4. Вывести количество космонавтов в настоящий момент (http://api.open-notify.org/astros.json) (https://pypi.org/project/requests/) PATH: /space/
-
-
-
-import requests
-r = requests.get('https://api.github.com/repos/psf/requests')
-r.json()["description"]
+/ - Вывод таблицы всех книг
+/1999/ - Вывод всех книг за данный год
+/1/ - Вывод всех книг которые соответствуют жанру с переданным ID
+/create/book/ - форма создания книги
+/update/book/<book_id>/ - Форма обновления книги
+/create/author/ - Форма добавление Автора
+/create/janr/ - Форма добавления Жанра
