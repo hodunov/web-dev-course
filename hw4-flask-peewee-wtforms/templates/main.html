@@ -1,0 +1,53 @@
+{% extends 'index.html' %} {% block body %}
+<div class="row" style="margin-left: 2.5em">
+  <h1>{{ page_name }}</h1>
+</div>
+<div class="container-space">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Author</th>
+        <th scope="col">Title</th>
+        <th scope="col">Year</th>
+        <th scope="col">Pages</th>
+        <th scope="col">Genre</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <th><a href="/author/{{book.author.id}}/">{{book.author.name}}</a></th>
+        <td>{{book.title}}</td>
+        <td><a href="/year/{{book.year}}/">{{book.year}}</a></td>
+        <th>{{book.pages}}</th>
+        <th><a href="/genre/{{book.genre.id}}/">{{book.genre.name}}</a></th>
+        <th>
+          <form method="get" action="/update/book/{{book.id}}">
+            <input
+              type="submit"
+              value="UPDATE"
+              class="btn btn-secondary btn-sm"
+            />
+          </form>
+        </th>
+        <th>
+          <form method="post" action="delete/book/">
+            <input type="hidden" value="{{book.id}}" name="id" />
+            <input
+              type="submit"
+              value="Delete"
+              class="btn btn-secondary btn-sm"
+            />
+          </form>
+        </th>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
