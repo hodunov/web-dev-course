@@ -21,9 +21,7 @@ class AuthorForm(wtforms.Form):
 
 
 class BookForm(wtforms.Form):
-    author = wtforms.SelectField(
-        choices=[(x.id, x.name) for x in Author.select()]
-    )
+    author = wtforms.SelectField()
     title = wtforms.StringField(validators=[wtforms.validators.DataRequired()])
     year = wtforms.IntegerField(validators=[
         wtforms.validators.DataRequired(message='Enter the numbers'),
@@ -33,9 +31,7 @@ class BookForm(wtforms.Form):
                                                  min=1, max=9999,
                                                  message="Please enter the number of the book's pages")
 ])
-    genre = wtforms.SelectField(
-        choices=[(x.id, x.name) for x in Genre.select()]
-    )
+    genre = wtforms.SelectField()
 
     def save(self):
         Book.create(author=self.author.data,

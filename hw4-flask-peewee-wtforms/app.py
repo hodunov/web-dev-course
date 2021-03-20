@@ -89,13 +89,16 @@ def create_book():
     """
     form = BookForm()
 
-    # If we don't specify a choice here, we'll catch the following error:
-    # The newly added genre will not appear in the Add New Book drop-down list.
+    # If you put these choices in forms.py, the new author or genre won't show up in the drop-down list.
+    # This has to do with database queries.
     form.genre.choices = [(x.id, x.name) for x in Genre.select()]
     form.author.choices = [(x.id, x.name) for x in Author.select()]
 
     if request.method == 'POST':
         form = BookForm(request.form)
+        # reassigned form, you must pass the choices again, otherwise there will be a validation error.
+        form.genre.choices = [(x.id, x.name) for x in Genre.select()]
+        form.author.choices = [(x.id, x.name) for x in Author.select()]
         if form.validate():
             form.save()
             flash("You've added a new book!📕")
