@@ -16,8 +16,14 @@ Including another URLconf
 import debug_toolbar
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+from core.views import GroupView, TeacherView, StudentView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/',include(debug_toolbar.urls)),
+    path('',TemplateView.as_view(template_name='index.html')),
+    path('group/', GroupView.as_view()),
+    path('teacher/', TeacherView.as_view()),
+    path('student/', StudentView.as_view()),
 ]
