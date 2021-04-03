@@ -1,0 +1,28 @@
+{% extends 'index.html' %} {% block body %}
+
+<div class="row" style="margin-left: 2.5em">
+  <h1>Groups list</h1>
+</div>
+<div class="container-space">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Group</th>
+        <th scope="col">Teacher</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for group in object_list.all %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <th><a href="/group/{{group.id}}">{{group}}</a></th>
+        {% for teacher in group.teacher.all %}
+        <th><a href="/teacher/{{teacher.id}}">{{ teacher }}</a></th>
+        {% endfor %} {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
