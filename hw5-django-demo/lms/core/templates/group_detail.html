@@ -1,0 +1,37 @@
+{% extends 'index.html' %} {% block body %}
+
+<div class="row" style="margin-left: 2.5em">
+  <h1>Groups list</h1>
+</div>
+<div class="container-space">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Group name</th>
+        <th scope="col">Teacher</th>
+        <th scope="col">Number of students</th>
+        <th scope="col">Average age of students</th>
+        <th scope="col">Maximum age of student</th>
+        <th scope="col">Minimal age of student</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for group in object_list.all %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <th><a href="/group/{{group.id}}">{{group}}</a></th>
+        <th><a href="/teacher/{{group.teacher_id}}">{{ group.teacher_name }}</a></th>
+        <th scope="row">{{ group.student_count}}</th>
+        <th scope="row">{{ group.student_avg_age}}</th>
+        <th scope="row">{{ group.student_max_age}}</th>
+        <th scope="row">{{ group.student_min_age}}</th>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+
+
