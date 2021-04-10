@@ -16,3 +16,6 @@ local_settings.py
 
 ### Pycharm ###
 .idea
+
+### DB ###
+db.sqlite3
