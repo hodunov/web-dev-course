@@ -21,12 +21,13 @@ from core.views import GroupView, TeacherView, StudentView, IndexView
 from core.views import CreateGroupView, CreateTeacherView, CreateStudentView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('__debug__/',include(debug_toolbar.urls)),
-    path('',IndexView.as_view(template_name='group_detail.html')),
+    path('__debug__/', include(debug_toolbar.urls)),
+    path('', IndexView.as_view(template_name='group_detail.html')),
     path('group/', GroupView.as_view()),
     path('teacher/', TeacherView.as_view()),
     path('student/', StudentView.as_view()),
     path('group/create/', CreateGroupView.as_view()),
     path('teacher/create/', CreateTeacherView.as_view()),
     path('student/create/', CreateStudentView.as_view()),
+    path('dtl/', IndexView.as_view(template_name='dtl.html')),
 ]

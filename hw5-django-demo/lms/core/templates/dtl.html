@@ -1,0 +1,19 @@
+{% extends 'index.html' %} {% load core_tags %} {% block body %}
+
+<div class="row" style="margin-left: 2.5em">
+  <h1>DTL tasks</h1>
+</div>
+
+<div class="container-space">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Group name</th>
+        <th scope="col">Teacher</th>
+      </tr>
+    </thead>
+    {% random_teachers %}
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<tbody>
+  {% for teacher in teachers %}
+  <tr>
+    <th scope="row">{{ forloop.counter }}</th>
+    <th scope="row">{{ teacher.fullname }}</th>
+    {% for group in teacher.group_set.all %}
+    <th><a href="/group/{{group.id}}">{{ group }}</a></th>
+    {% endfor %}
+    <th scope="row">{{ teacher.phone_number }}</th>
+    <th scope="row">{{ teacher.email }}</th>
+    <th scope="row">{{ teacher.birthday }}</th>
+    <th>
+      <form method="get" action="/teacher/{{teacher.id}}">
+        <input
+          type="submit"
+          value="UPDATE"
+          class="btn btn-secondary btn-sm"
+        />
+      </form>
+    </th>
+    {% endfor %}
+  </tr>
+</tbody>
