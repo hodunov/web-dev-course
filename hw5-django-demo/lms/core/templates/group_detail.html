@@ -21,7 +21,9 @@
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <th><a href="/group/{{group.id}}">{{group}}</a></th>
-        <th><a href="/teacher/{{group.teacher_id}}">{{ group.teacher_name }}</a></th>
+        <th>
+          <a href="/teacher/{{group.teacher_id}}">{{ group.teacher_name }}</a>
+        </th>
         <th scope="row">{{ group.student_count}}</th>
         <th scope="row">{{ group.student_avg_age}}</th>
         <th scope="row">{{ group.student_max_age}}</th>
@@ -33,5 +35,3 @@
 </div>
 
 {% endblock %}
-
-
