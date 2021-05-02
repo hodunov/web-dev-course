@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+from celery.schedules import crontab
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'core',
+
     'debug_toolbar',
+    'django_forms_bootstrap',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +52,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+
+    'core.middleware.DjangoLogMiddleware',
 ]
 
 ROOT_URLCONF = 'lms.urls'
@@ -130,3 +136,14 @@ INTERNAL_IPS = [
 
 # https://docs.djangoproject.com/en/3.2/releases/3.2/#customizing-type-of-auto-created-primary-keys
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
+ADMIN_EMAIL = "admin@example.com"
+SUPPORT_EMAIL_FROM = "support@example.com"
+
+# beat_schedule
+CELERY_BEAT_SCHEDULE = {
+    'my-first-regular-task': {
+        'task': 'core.tasks.test_regular_task',
+        'schedule': crontab(minute=0, hour=0)
+    }
+}
