@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
-
+from lms.tasks import send_contact_us_email
 
 class Group(models.Model):
     name = models.CharField(max_length=255)
@@ -52,3 +52,26 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.fullname
+
+
+class ContactUs(models.Model):
+    email = models.EmailField()
+    name = models.CharField(max_length=255)
+    message = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "Contact Us"
+
+    def __str__(self):
+        return f"{self.name} - {self.email}"
+
+    def save(self, *args, **kwargs):
+        super(ContactUs, self).save(*args, **kwargs)
+        send_contact_us_email.delay(self.name, self.message, self.email)
+
+
+class Logger(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    request_path = models.CharField(max_length=255)
+    request_method = models.CharField(max_length=255)
+    request_execution_time = models.FloatField()

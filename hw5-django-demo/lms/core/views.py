@@ -1,5 +1,8 @@
 from django.views.generic.list import ListView
-from core.models import Group, Teacher, Student
+from django.views.generic.edit import CreateView
+from django.urls.base import reverse_lazy
+
+from core.models import Group, Teacher, Student, ContactUs
 from django.db.models import F
 from django.db.models.aggregates import Avg, Count, Max, Min
 
@@ -31,3 +34,10 @@ class TeacherView(ListView):
 class StudentView(ListView):
     template_name = "student.html"
     model = Student
+
+
+class ContactUsView(CreateView):
+    template_name = "contact_us.html"
+    success_url = reverse_lazy("contact_done")
+    model = ContactUs
+    fields = "__all__"
