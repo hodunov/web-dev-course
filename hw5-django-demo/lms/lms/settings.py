@@ -127,3 +127,6 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+# https://docs.djangoproject.com/en/3.2/releases/3.2/#customizing-type-of-auto-created-primary-keys
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
