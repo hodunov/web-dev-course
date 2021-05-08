@@ -19,10 +19,11 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from core.views import GroupView, TeacherView, StudentView, IndexView
 from core.views import CreateGroupView, CreateTeacherView, CreateStudentView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/',include(debug_toolbar.urls)),
-    path('',IndexView.as_view(template_name='group_detail.html')),
+    path('', IndexView.as_view(template_name='group_detail.html'), name="home"),
     path('group/', GroupView.as_view()),
     path('teacher/', TeacherView.as_view()),
     path('student/', StudentView.as_view()),
