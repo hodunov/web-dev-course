@@ -1,3 +1,6 @@
+import csv
+import datetime
+from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.urls.base import reverse_lazy
@@ -41,3 +44,28 @@ class ContactUsView(CreateView):
     success_url = reverse_lazy("contact_done")
     model = ContactUs
     fields = "__all__"
+
+
+def export_students_csv(request):
+    response = HttpResponse(
+        content_type='text/csv',
+        headers={
+            'Content-Disposition':
+                f'attachment; '
+                f'filename=f"students-{datetime.datetime.now()}.csv"'},
+    )
+
+    writer = csv.writer(response)
+    writer.writerow([
+        'Full name', 'Group', 'Birthday',
+        'Phone', 'Email', 'Gender', 'Age',
+    ])
+
+    students = Student.objects.all()
+    for student in students:
+        writer.writerow([
+            student.fullname, student.group, student.birthday,
+            student.phone_number, student.email, student.gender,
+            student.age,
+        ])
+    return response
