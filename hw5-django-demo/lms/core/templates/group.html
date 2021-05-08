@@ -10,6 +10,7 @@
         <th scope="col">#</th>
         <th scope="col">Group</th>
         <th scope="col">Teacher</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -19,8 +20,17 @@
         <th><a href="/group/{{group.id}}">{{group}}</a></th>
         {% for teacher in group.teacher.all %}
         <th><a href="/teacher/{{teacher.id}}">{{ teacher }}</a></th>
-        {% endfor %} {% endfor %}
+        <th>
+          <form method="get" action="/group/{{group.id}}">
+            <input
+              type="submit"
+              value="UPDATE"
+              class="btn btn-secondary btn-sm"
+            />
+          </form>
+        </th>
       </tr>
+      {% endfor %} {% endfor %}
     </tbody>
   </table>
 </div>

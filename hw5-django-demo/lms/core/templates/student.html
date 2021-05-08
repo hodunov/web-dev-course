@@ -10,6 +10,7 @@
         <th scope="col">Phone number</th>
         <th scope="col">Email</th>
         <th scope="col">Birthday</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,15 @@
         <th scope="row">{{ student.phone_number }}</th>
         <th scope="row">{{ student.email }}</th>
         <th scope="row">{{ student.birthday }}</th>
+        <th>
+          <form method="get" action="/student/{{student.id}}">
+            <input
+              type="submit"
+              value="UPDATE"
+              class="btn btn-secondary btn-sm"
+            />
+          </form>
+        </th>
         {% endfor %}
       </tr>
     </tbody>

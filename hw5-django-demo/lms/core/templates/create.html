@@ -1,0 +1,10 @@
+{% extends 'index.html' %} {% load bootstrap_tags %} {% block body %}
+<body>
+  <div class="container">
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %} {{ form|as_bootstrap_horizontal }}
+      <button type="submit">{{ action }}</button>
+    </form>
+  </div>
+</body>
+{% endblock %}

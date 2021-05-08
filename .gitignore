@@ -1,0 +1,21 @@
+### Python ###
+__pycache__/
+
+# Distribution / packaging
+.Python
+env/
+venv/
+.env/
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+### Pycharm ###
+.idea
+
+### DB ###
+db.sqlite3
